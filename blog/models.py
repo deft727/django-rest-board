@@ -49,7 +49,7 @@ class Photo(models.Model):
 class Topic(models.Model):
     subject = models.CharField(max_length=255, verbose_name='Тема')
     last_updated = models.DateTimeField(auto_now_add=True)
-    board = models.ForeignKey(Board, on_delete=models.CASCADE,related_name="topics")
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name="topics")
     starter = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.PositiveIntegerField(default=0)
 
@@ -91,7 +91,7 @@ class Post(models.Model):
     topic = models.ForeignKey(Topic, related_name='posts', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
-    created_by = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User,  on_delete=models.CASCADE)
     updated_by = models.ForeignKey(User, null=True, related_name='+', on_delete=models.CASCADE)
 
     class Meta:
